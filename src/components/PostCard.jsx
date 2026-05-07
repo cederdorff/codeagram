@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Bookmark, Heart, MessageCircle, Share2 } from "lucide-react";
+import { Bookmark, Heart } from "lucide-react";
+import { UserInfo } from "./UserInfo.jsx";
 
 export function PostCard({ post }) {
   const { avatar, caption, comments, image, likes, tags, timestamp, username } = post;
@@ -9,11 +10,7 @@ export function PostCard({ post }) {
 
   return (
     <div className="post-card">
-      <div className="post-header">
-        <img className="avatar" src={avatar} />
-        <h2>{username}</h2>
-        <p>{timestamp}</p>
-      </div>
+      <UserInfo avatar={avatar} timestamp={timestamp} username={username} />
 
       <img className="post-image" src={image} />
 
@@ -21,18 +18,12 @@ export function PostCard({ post }) {
         <button className="action-button" type="button" onClick={() => setLiked(!liked)}>
           <Heart className={liked ? "is-active" : ""} />
         </button>
-        <button className="action-button" type="button">
-          <MessageCircle />
-        </button>
-        <button className="action-button" type="button">
-          <Share2 />
-        </button>
         <button className="action-button post-bookmark" type="button" onClick={() => setBookmarked(!bookmarked)}>
           <Bookmark className={bookmarked ? "is-active" : ""} />
         </button>
 
         <p className="likes">
-          <strong>{displayedLikes.toLocaleString("en-US")}</strong> likes
+          <strong>{displayedLikes}</strong> likes
         </p>
         <p className="caption">
           <strong>{username}</strong> {caption}
