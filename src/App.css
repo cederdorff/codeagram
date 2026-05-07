@@ -145,18 +145,16 @@
   border: 2px solid rgba(88, 166, 255, 0.3);
   border-radius: 50%;
   object-fit: cover;
+  grid-row: 1 / span 2;
 }
 
-.user-copy {
+.user-info h2,
+.user-info p {
   min-width: 0;
 }
 
-.user-copy h2,
-.user-copy p {
-  min-width: 0;
-}
-
-.user-copy h2 {
+.user-info h2 {
+  grid-column: 2;
   overflow: hidden;
   margin: 0;
   color: var(--text-strong);
@@ -168,7 +166,9 @@
   white-space: nowrap;
 }
 
-.user-copy p {
+.user-info p {
+  grid-column: 2;
+  grid-row: 2;
   margin: 0;
   color: var(--text-muted);
   font-size: 12px;
