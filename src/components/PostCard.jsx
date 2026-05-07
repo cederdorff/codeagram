@@ -2,8 +2,7 @@ import { useState } from "react";
 import { Bookmark, Heart, MessageCircle, Share2 } from "lucide-react";
 
 export function PostCard({ post }) {
-  const { avatar, caption, comments, image, likes, tags, timestamp, username } =
-    post;
+  const { avatar, caption, comments, image, likes, tags, timestamp, username } = post;
   const [liked, setLiked] = useState(false);
   const [bookmarked, setBookmarked] = useState(false);
   const displayedLikes = likes + (liked ? 1 : 0);
@@ -19,11 +18,7 @@ export function PostCard({ post }) {
       <img className="post-image" src={image} />
 
       <div className="post-body">
-        <button
-          className="action-button"
-          type="button"
-          onClick={() => setLiked(!liked)}
-        >
+        <button className="action-button" type="button" onClick={() => setLiked(!liked)}>
           <Heart className={liked ? "is-active" : ""} />
         </button>
         <button className="action-button" type="button">
@@ -32,11 +27,7 @@ export function PostCard({ post }) {
         <button className="action-button" type="button">
           <Share2 />
         </button>
-        <button
-          className="action-button post-bookmark"
-          type="button"
-          onClick={() => setBookmarked(!bookmarked)}
-        >
+        <button className="action-button post-bookmark" type="button" onClick={() => setBookmarked(!bookmarked)}>
           <Bookmark className={bookmarked ? "is-active" : ""} />
         </button>
 
