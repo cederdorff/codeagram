@@ -63,8 +63,7 @@
 
 .icon-button,
 .post-menu,
-.action-button,
-.comments-button {
+.action-button {
   border: 0;
   color: inherit;
   font: inherit;
@@ -233,17 +232,14 @@
 }
 
 .likes,
-.caption,
-.comments-button {
+.caption {
   font-size: 14px;
   line-height: 20px;
   letter-spacing: -0.15px;
 }
 
 .likes,
-.caption,
-.tags,
-.comments-button {
+.caption {
   grid-column: 1 / -1;
 }
 
@@ -260,33 +256,6 @@
 
 .caption {
   overflow-wrap: anywhere;
-}
-
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin: 4px 0 0;
-}
-
-.tags a {
-  color: var(--accent);
-  font-size: 12px;
-  line-height: 16px;
-  text-decoration: none;
-}
-
-.comments-button {
-  align-self: flex-start;
-  margin-top: 3px;
-  padding: 0;
-  color: var(--text-muted);
-  font-weight: 550;
-}
-
-.comments-button:hover,
-.tags a:hover {
-  text-decoration: underline;
 }
 
 button:focus-visible,

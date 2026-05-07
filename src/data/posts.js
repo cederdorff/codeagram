@@ -9,9 +9,7 @@ export const posts = [
       "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=800&fit=crop",
     caption:
       "Finally got my new dev setup complete! Loving the dual monitor workflow.",
-    likes: 1243,
-    comments: 89,
-    tags: ["coding", "setup", "productivity"]
+    likes: 1243
   },
   {
     id: 2,
@@ -23,9 +21,7 @@ export const posts = [
       "https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=800&h=800&fit=crop",
     caption:
       "Clean code is not written by following a set of rules. You know you are working on clean code when each routine you read turns out to be pretty much what you expected.",
-    likes: 2156,
-    comments: 134,
-    tags: ["cleancode", "programming", "bestpractices"]
+    likes: 2156
   },
   {
     id: 3,
@@ -36,9 +32,7 @@ export const posts = [
     image:
       "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=800&fit=crop",
     caption: "Just shipped my first React component library to npm! 🚀",
-    likes: 3421,
-    comments: 267,
-    tags: ["react", "opensource", "npm"]
+    likes: 3421
   },
   {
     id: 4,
@@ -50,9 +44,7 @@ export const posts = [
       "https://images.unsplash.com/photo-1484417894907-623942c8ee29?w=800&h=800&fit=crop",
     caption:
       "Late night coding session. Working on a new AI feature for my side project.",
-    likes: 987,
-    comments: 56,
-    tags: ["ai", "sideproject", "coding"]
+    likes: 987
   },
   {
     id: 5,
@@ -64,8 +56,6 @@ export const posts = [
       "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&h=800&fit=crop",
     caption:
       "Coffee + Code = Productivity ☕️ Working on some backend optimizations today.",
-    likes: 1876,
-    comments: 92,
-    tags: ["backend", "coffee", "optimization"]
+    likes: 1876
   }
 ];
