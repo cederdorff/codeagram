@@ -10,47 +10,37 @@ export function PostCard({ post }) {
   return (
     <div className="post-card">
       <div className="post-header">
-        <div className="author">
-          <img className="avatar" src={avatar} alt={username} />
-          <div className="author-copy">
-            <h2>{username}</h2>
-            <p>{timestamp}</p>
-          </div>
-        </div>
+        <img className="avatar" src={avatar} />
+        <h2>{username}</h2>
+        <p>{timestamp}</p>
         <button className="post-menu" type="button">
           <EllipsisVertical />
         </button>
       </div>
 
-      <div className="post-media">
-        <img src={image} alt={caption} />
-      </div>
+      <img className="post-image" src={image} />
 
       <div className="post-body">
-        <div className="post-actions">
-          <div className="primary-actions">
-            <button
-              className="action-button"
-              type="button"
-              onClick={() => setLiked(!liked)}
-            >
-              <Heart className={liked ? 'is-active' : ''} />
-            </button>
-            <button className="action-button" type="button">
-              <MessageCircle />
-            </button>
-            <button className="action-button" type="button">
-              <Share2 />
-            </button>
-          </div>
-          <button
-            className="action-button"
-            type="button"
-            onClick={() => setBookmarked(!bookmarked)}
-          >
-            <Bookmark className={bookmarked ? 'is-active' : ''} />
-          </button>
-        </div>
+        <button
+          className="action-button"
+          type="button"
+          onClick={() => setLiked(!liked)}
+        >
+          <Heart className={liked ? 'is-active' : ''} />
+        </button>
+        <button className="action-button" type="button">
+          <MessageCircle />
+        </button>
+        <button className="action-button" type="button">
+          <Share2 />
+        </button>
+        <button
+          className="action-button post-bookmark"
+          type="button"
+          onClick={() => setBookmarked(!bookmarked)}
+        >
+          <Bookmark className={bookmarked ? 'is-active' : ''} />
+        </button>
 
         <p className="likes">
           <strong>{displayedLikes.toLocaleString('en-US')}</strong> likes
@@ -58,13 +48,13 @@ export function PostCard({ post }) {
         <p className="caption">
           <strong>{username}</strong> {caption}
         </p>
-        <div className="tags">
+        <p className="tags">
           {tags.map((tag) => (
             <a href={`/${tag}`} key={tag}>
               #{tag}
             </a>
           ))}
-        </div>
+        </p>
         <button className="comments-button" type="button">
           View all {comments} comments
         </button>

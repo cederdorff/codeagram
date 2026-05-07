@@ -6,9 +6,8 @@ export function HeaderActions() {
       <button className="icon-button" type="button">
         <Search />
       </button>
-      <button className="icon-button" type="button">
+      <button className="icon-button has-dot" type="button">
         <Bell />
-        <span className="notification-dot" />
       </button>
       <button className="profile-button" type="button" />
     </div>
