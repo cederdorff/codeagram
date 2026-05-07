@@ -62,7 +62,6 @@
 }
 
 .icon-button,
-.post-menu,
 .action-button {
   border: 0;
   color: inherit;
@@ -94,7 +93,6 @@
 }
 
 .icon-button svg,
-.post-menu svg,
 .action-button svg {
   display: block;
   width: 100%;
@@ -106,13 +104,7 @@
   stroke-width: 2;
 }
 
-.post-menu circle {
-  fill: currentColor;
-  stroke: none;
-}
-
 .icon-button:hover,
-.post-menu:hover,
 .action-button:hover {
   color: var(--text-strong);
   background: var(--surface-soft);
@@ -137,7 +129,7 @@
 
 .user-info {
   display: grid;
-  grid-template-columns: 44px minmax(0, 1fr) 28px;
+  grid-template-columns: 44px minmax(0, 1fr);
   column-gap: 12px;
   min-height: 72px;
   align-items: center;
@@ -146,7 +138,6 @@
 }
 
 .avatar {
-  grid-row: 1 / span 2;
   width: 44px;
   height: 44px;
   flex: 0 0 auto;
@@ -156,13 +147,16 @@
   object-fit: cover;
 }
 
-.user-info h2,
-.user-info p {
+.user-copy {
   min-width: 0;
 }
 
-.user-info h2 {
-  grid-column: 2;
+.user-copy h2,
+.user-copy p {
+  min-width: 0;
+}
+
+.user-copy h2 {
   overflow: hidden;
   margin: 0;
   color: var(--text-strong);
@@ -174,25 +168,11 @@
   white-space: nowrap;
 }
 
-.user-info p {
-  grid-column: 2;
-  grid-row: 2;
+.user-copy p {
   margin: 0;
   color: var(--text-muted);
   font-size: 12px;
   line-height: 16px;
-}
-
-.post-menu {
-  grid-column: 3;
-  grid-row: 1 / span 2;
-  display: grid;
-  width: 28px;
-  height: 28px;
-  padding: 4px;
-  place-items: center;
-  border-radius: 50%;
-  color: var(--icon);
 }
 
 .post-image {
@@ -233,20 +213,12 @@
 
 .likes,
 .caption {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: var(--text-strong);
   font-size: 14px;
   line-height: 20px;
   letter-spacing: -0.15px;
-}
-
-.likes,
-.caption {
-  grid-column: 1 / -1;
-}
-
-.likes,
-.caption {
-  margin: 0;
-  color: var(--text-strong);
 }
 
 .likes strong,

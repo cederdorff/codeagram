@@ -5,7 +5,7 @@ import { UserInfo } from "./UserInfo.jsx";
 export function PostCard({ post }) {
   const [liked, setLiked] = useState(false);
   const [bookmarked, setBookmarked] = useState(false);
-  const displayedLikes = post.likes + (liked ? 1 : 0);
+  const displayedLikes = liked ? post.likes + 1 : post.likes;
 
   function toggleLike() {
     setLiked(!liked);
@@ -23,7 +23,7 @@ export function PostCard({ post }) {
 
       <div className="post-body">
         <button className="action-button" type="button" onClick={toggleLike}>
-          <Heart className={liked ? "is-active" : ""} />z
+          <Heart className={liked ? "is-active" : ""} />
         </button>
         <button className="action-button post-bookmark" type="button" onClick={toggleBookmark}>
           <Bookmark className={bookmarked ? "is-active" : ""} />
