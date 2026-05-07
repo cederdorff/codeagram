@@ -62,7 +62,6 @@
 }
 
 .icon-button,
-.profile-button,
 .post-menu,
 .action-button,
 .comments-button {
@@ -120,14 +119,6 @@
   background: var(--surface-soft);
 }
 
-.profile-button {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background:
-    linear-gradient(135deg, #58a6ff 0%, #64c7cf 50%, #7ee787 100%);
-}
-
 .feed {
   display: flex;
   width: min(100%, 672px);
@@ -170,6 +161,7 @@
 }
 
 .post-header h2 {
+  grid-column: 2;
   overflow: hidden;
   margin: 0;
   color: var(--text-strong);
@@ -182,6 +174,8 @@
 }
 
 .post-header p {
+  grid-column: 2;
+  grid-row: 2;
   margin: 0;
   color: var(--text-muted);
   font-size: 12px;
@@ -189,6 +183,8 @@
 }
 
 .post-menu {
+  grid-column: 3;
+  grid-row: 1 / span 2;
   display: grid;
   width: 28px;
   height: 28px;

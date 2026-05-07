@@ -1,11 +1,12 @@
-import { useState } from 'react'
-import { Bookmark, EllipsisVertical, Heart, MessageCircle, Share2 } from 'lucide-react'
+import { useState } from "react";
+import { Bookmark, Heart, MessageCircle, Share2 } from "lucide-react";
 
 export function PostCard({ post }) {
-  const { avatar, caption, comments, image, likes, tags, timestamp, username } = post
-  const [liked, setLiked] = useState(false)
-  const [bookmarked, setBookmarked] = useState(false)
-  const displayedLikes = likes + (liked ? 1 : 0)
+  const { avatar, caption, comments, image, likes, tags, timestamp, username } =
+    post;
+  const [liked, setLiked] = useState(false);
+  const [bookmarked, setBookmarked] = useState(false);
+  const displayedLikes = likes + (liked ? 1 : 0);
 
   return (
     <div className="post-card">
@@ -13,9 +14,6 @@ export function PostCard({ post }) {
         <img className="avatar" src={avatar} />
         <h2>{username}</h2>
         <p>{timestamp}</p>
-        <button className="post-menu" type="button">
-          <EllipsisVertical />
-        </button>
       </div>
 
       <img className="post-image" src={image} />
@@ -26,7 +24,7 @@ export function PostCard({ post }) {
           type="button"
           onClick={() => setLiked(!liked)}
         >
-          <Heart className={liked ? 'is-active' : ''} />
+          <Heart className={liked ? "is-active" : ""} />
         </button>
         <button className="action-button" type="button">
           <MessageCircle />
@@ -39,11 +37,11 @@ export function PostCard({ post }) {
           type="button"
           onClick={() => setBookmarked(!bookmarked)}
         >
-          <Bookmark className={bookmarked ? 'is-active' : ''} />
+          <Bookmark className={bookmarked ? "is-active" : ""} />
         </button>
 
         <p className="likes">
-          <strong>{displayedLikes.toLocaleString('en-US')}</strong> likes
+          <strong>{displayedLikes.toLocaleString("en-US")}</strong> likes
         </p>
         <p className="caption">
           <strong>{username}</strong> {caption}
@@ -60,5 +58,5 @@ export function PostCard({ post }) {
         </button>
       </div>
     </div>
-  )
+  );
 }

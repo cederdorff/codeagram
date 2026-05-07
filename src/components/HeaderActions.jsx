@@ -1,4 +1,4 @@
-import { Bell, Search } from "lucide-react";
+import { Bell, Search, User } from "lucide-react";
 
 export function HeaderActions() {
   return (
@@ -9,7 +9,9 @@ export function HeaderActions() {
       <button className="icon-button has-dot" type="button">
         <Bell />
       </button>
-      <button className="profile-button" type="button" />
+      <button className="icon-button" type="button">
+        <User />
+      </button>
     </div>
   );
 }
