@@ -3,10 +3,9 @@ import { Bookmark, Heart } from "lucide-react";
 import { UserInfo } from "./UserInfo.jsx";
 
 export function PostCard({ post }) {
-  const { avatar, caption, image, likes, timestamp, username } = post;
   const [liked, setLiked] = useState(false);
   const [bookmarked, setBookmarked] = useState(false);
-  const displayedLikes = likes + (liked ? 1 : 0);
+  const displayedLikes = post.likes + (liked ? 1 : 0);
 
   function toggleLike() {
     setLiked(!liked);
@@ -18,13 +17,13 @@ export function PostCard({ post }) {
 
   return (
     <div className="post-card">
-      <UserInfo avatar={avatar} timestamp={timestamp} username={username} />
+      <UserInfo avatar={post.avatar} timestamp={post.timestamp} username={post.username} />
 
-      <img className="post-image" src={image} />
+      <img className="post-image" src={post.image} />
 
       <div className="post-body">
         <button className="action-button" type="button" onClick={toggleLike}>
-          <Heart className={liked ? "is-active" : ""} />
+          <Heart className={liked ? "is-active" : ""} />z
         </button>
         <button className="action-button post-bookmark" type="button" onClick={toggleBookmark}>
           <Bookmark className={bookmarked ? "is-active" : ""} />
@@ -34,7 +33,7 @@ export function PostCard({ post }) {
           <strong>{displayedLikes}</strong> likes
         </p>
         <p className="caption">
-          <strong>{username}</strong> {caption}
+          <strong>{post.username}</strong> {post.caption}
         </p>
       </div>
     </div>
