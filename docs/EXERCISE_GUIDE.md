@@ -1069,7 +1069,7 @@ export default function App() {
 ### 5.5 Render a few more cards with hardcoded props
 
 1. Open `src/App.jsx`
-2. Add 2 or 3 more `PostCard` components
+2. Add 2 more `PostCard` components so you have 3 cards in total
 3. Give each card its own hardcoded `image` and `caption`
 4. Save and test in the browser
 
@@ -1109,12 +1109,13 @@ export default function App() {
 
 1. Open `src/App.jsx`
 2. Import `posts` from `src/data/posts.js`
-3. Replace your hardcoded prop values with values from `posts`
-4. Use at least 3 posts:
+3. Keep the same 3 `PostCard` components
+4. Replace the hardcoded prop values with values from `posts`
+5. Use these 3 posts:
    - `posts[0]`
    - `posts[1]`
    - `posts[2]`
-5. Save and test in the browser
+6. Save and test in the browser
 
 <details>
 <summary>Need help? Show <code>App.jsx</code> using <code>posts</code> data</summary>
