@@ -910,12 +910,22 @@ export const posts = [
 
 You now have a `posts` array that can be used later in the app.
 
+Next, you will use that data to build a reusable post card.
+
 ---
 
 ## 5. Build One Reusable Post Card
 
 Start with a simple `PostCard`, test it, and then improve it step by step.
 In this whole section, do **not** use `.map()` yet.
+
+The flow in this section is:
+
+1. build a simple card
+2. make it reusable with props
+3. connect it to your post data
+4. add `UserInfo`
+5. make the card interactive with likes and bookmarks
 
 ### 5.1 Create a simple `PostCard.jsx`
 
@@ -1159,6 +1169,9 @@ export function UserInfo({ avatar, timestamp, username }) {
 
 </details>
 
+Now you have a separate `UserInfo` component.
+Next, you will try it inside `PostCard`.
+
 ### 5.8 Test `UserInfo.jsx` inside `PostCard.jsx`
 
 1. Open `src/components/PostCard.jsx`
@@ -1193,6 +1206,9 @@ export function PostCard({ image, caption }) {
 ```
 
 </details>
+
+Now `UserInfo` works inside the card.
+Next, you will replace the separate `image` and `caption` props with one `post` object.
 
 ### 5.9 Upgrade `PostCard.jsx` to receive one `post` prop
 
@@ -1543,7 +1559,7 @@ You should now see several complete post cards under the header.
 
 ## 6. Refactor the Feed with `.map()`
 
-Right now, your app should already be showing several posts.
+Right now, your app should already be showing several posts manually.
 
 In section 5, you wrote each `PostCard` by hand.
 Now you will refactor that code and use `.map()` instead.
@@ -1598,25 +1614,25 @@ In this exercise:
 4. Replace them with:
 
 ```jsx
-{
-  posts.map((post) => <PostCard />);
-}
+{posts.map((post) => (
+  <PostCard />
+))}
 ```
 
 5. Inside the `.map()`, pass the `post` prop:
 
 ```jsx
-{
-  posts.map((post) => <PostCard post={post} />);
-}
+{posts.map((post) => (
+  <PostCard post={post} />
+))}
 ```
 
 6. Add a `key` prop too:
 
 ```jsx
-{
-  posts.map((post) => <PostCard key={post.id} post={post} />);
-}
+{posts.map((post) => (
+  <PostCard key={post.id} post={post} />
+))}
 ```
 
 7. `key` helps React keep track of each item in the list.
