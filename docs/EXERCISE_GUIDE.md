@@ -35,6 +35,9 @@ Need help? How to use the toggles:
 - If you are in guided mode, open every help block before coding.
 - If you are in independent mode, keep help blocks closed and treat them like backup hints.
 
+This guide also contains short learning blocks.
+Read them when they appear - they explain important React concepts used in the next steps.
+
 ---
 
 ## 0. Create a New React Project
@@ -453,6 +456,70 @@ Examples:
 ### Checkpoint
 
 The project still runs after saving the CSS file.
+
+---
+
+### JSX
+
+JSX is the syntax you use in React components to describe what should be shown on the page.
+
+- What: JSX looks a lot like HTML, but you write it inside JavaScript
+- Why: JSX makes it easier to build UI with components
+- How: you return JSX from a React component
+
+Example:
+
+```jsx
+export function Header() {
+  return <div>Hello</div>;
+}
+```
+
+In JSX:
+
+- use `className` instead of `class`
+- you can write JavaScript inside `{ }`
+
+Example:
+
+```jsx
+<p>{username}</p>
+```
+
+---
+
+### Components
+
+A component is a reusable piece of UI.
+
+- What: a component is a function that returns JSX
+- Why: components help you split the app into smaller parts
+- How: you create a component in a file and use it like `<Header />`
+
+Examples in this exercise:
+
+- `Header`
+- `PostCard`
+- `UserInfo`
+
+---
+
+### Import and Export
+
+`export` makes something available from a file.
+`import` lets you use it in another file.
+
+Example:
+
+```jsx
+export function Header() {
+  return <div>Hello</div>;
+}
+```
+
+```jsx
+import { Header } from "./components/Header.jsx";
+```
 
 ---
 
@@ -1483,6 +1550,20 @@ Now you will refactor that code and use `.map()` instead.
 
 The goal in this section is not to change how the page looks.
 The goal is to make the code shorter and smarter.
+
+### Rendering Lists
+
+When you have many similar pieces of UI, you often want to render a list.
+
+- What: rendering a list means showing many components from an array of data
+- Why: it saves you from writing the same component many times by hand
+- How: in React, you often use `.map()`
+
+Example:
+
+```jsx
+items.map((item) => <Card />)
+```
 
 ### About `.map()`
 
