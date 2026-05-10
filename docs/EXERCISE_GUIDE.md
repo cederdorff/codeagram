@@ -848,6 +848,7 @@ You now have a `posts` array that can be used later in the app.
 ## 5. Build One Reusable Post Card
 
 Start with a simple `PostCard`, test it, and then improve it step by step.
+In this whole section, do **not** use `.map()` yet.
 
 ### 5.1 Create a simple `PostCard.jsx`
 
@@ -1062,6 +1063,9 @@ export default function App() {
 
 </details>
 
+Now the card works with image and caption data.
+Next, you will improve each card by adding user information at the top.
+
 ### 5.7 Create `UserInfo.jsx`
 
 1. Inside `src/components`, create `UserInfo.jsx`
@@ -1129,8 +1133,8 @@ export function PostCard({ image, caption }) {
 2. Change the props from `image` and `caption` to one prop named `post`
 3. `post` is an object prop
 4. This means you are now passing one object into the component instead of passing separate values one by one
-5. Import `UserInfo`
-6. Add `UserInfo` above the image
+5. Keep `UserInfo` inside `PostCard`
+6. Replace the hardcoded `UserInfo` values with values from `post`
 7. Use:
    - `post.avatar`
    - `post.username`
@@ -1164,7 +1168,16 @@ export function PostCard({ post }) {
 1. Open `src/App.jsx`
 2. Replace the `image` and `caption` props with one `post` prop
 3. Do this for the same 3 cards
-4. Save and test in the browser
+4. For each `PostCard`, remove the old props:
+   - `image={...}`
+   - `caption={...}`
+5. Replace them with one prop:
+   - `post={posts[0]}`
+6. Do the same pattern for the next cards:
+   - `post={posts[1]}`
+   - `post={posts[2]}`
+7. Save and test in the browser
+8. The cards should still look almost the same, but now all the data comes from the `post` object
 
 <details>
 <summary>Need help? Show <code>App.jsx</code> with <code>post</code> props</summary>
@@ -1190,22 +1203,220 @@ export default function App() {
 
 </details>
 
-### 5.11 Finish the post card with buttons and likes
+Now the card has all the correct data.
+Next, you will make it interactive with likes and bookmarks.
+
+---
+
+### State
+
+State is data that can change inside a component.
+
+- What: state stores values the component can remember
+- Why: state lets the UI change when something happens
+- How: you create state with `useState`
+
+Example:
+
+```jsx
+const [liked, setLiked] = useState(false);
+```
+
+Here:
+
+- `liked` is the current value
+- `setLiked` is the function that updates the value
+- `false` is the starting value
+
+---
+
+### Events
+
+Events let your component respond to something the user does.
+
+- What: an event happens when the user clicks, types, or interacts with the page
+- Why: events make the app interactive
+- How: in React, you often use an event prop like `onClick`
+
+Example:
+
+```jsx
+<button type="button" onClick={toggleLike}>
+  Like
+</button>
+```
+
+Here:
+
+- `onClick` listens for a click
+- `toggleLike` runs when the button is clicked
+
+---
+
+### 5.11 Add likes to `PostCard.jsx`
 
 1. Open `src/components/PostCard.jsx`
-2. Import `useState` from React
-3. Import `Heart` and `Bookmark` from `lucide-react`
-4. Add two pieces of state:
-   - `liked`
-   - `bookmarked`
-5. Create functions to toggle each state
-6. Replace the simple caption area with a wrapper with class `post-body`
-7. Add:
-   - a like button
-   - a bookmark button
-   - the likes text
-   - the caption text
-8. Save and test in the browser
+2. Import `useState` from React and `Heart` from `lucide-react`:
+
+```jsx
+import { useState } from "react";
+import { Heart } from "lucide-react";
+```
+
+3. Add state inside the component:
+
+```jsx
+const [liked, setLiked] = useState(false);
+```
+
+4. Add a function for the like button:
+
+```jsx
+function toggleLike() {
+  setLiked(!liked);
+}
+```
+
+5. Create a variable for the number of likes to show:
+
+```jsx
+const displayedLikes = liked ? post.likes + 1 : post.likes;
+```
+
+6. Keep `UserInfo` and the post image as they are.
+7. Replace the simple caption `<p>` under the image with:
+
+```jsx
+<div className="post-body"></div>
+```
+
+8. Inside `post-body`, add the like button:
+
+```jsx
+<button className="action-button" type="button" onClick={toggleLike}>
+  <Heart className={liked ? "is-active" : ""} />
+</button>
+```
+
+9. Under the button, add the likes text:
+
+```jsx
+<p className="likes">
+  <strong>{displayedLikes}</strong> likes
+</p>
+```
+
+10. Under the likes text, add the caption text:
+
+```jsx
+<p className="caption">
+  <strong>{post.username}</strong> {post.caption}
+</p>
+```
+
+11. Save and test in the browser.
+12. You do not need to change `App.jsx` in this step.
+
+Use these class names:
+
+- `post-body`
+- `action-button`
+- `likes`
+- `caption`
+- `is-active`
+
+What should happen:
+
+- when you click the heart, the likes number should go up by 1
+- when you click the heart again, the likes number should go back
+- the heart icon should change style when active
+
+<details>
+<summary>Need help? Show <code>PostCard.jsx</code> with likes</summary>
+
+```jsx
+import { useState } from "react";
+import { Heart } from "lucide-react";
+import { UserInfo } from "./UserInfo.jsx";
+
+export function PostCard({ post }) {
+  const [liked, setLiked] = useState(false);
+  const displayedLikes = liked ? post.likes + 1 : post.likes;
+
+  function toggleLike() {
+    setLiked(!liked);
+  }
+
+  return (
+    <div className="post-card">
+      <UserInfo avatar={post.avatar} timestamp={post.timestamp} username={post.username} />
+      <img className="post-image" src={post.image} alt={post.caption} />
+
+      <div className="post-body">
+        <button className="action-button" type="button" onClick={toggleLike}>
+          <Heart className={liked ? "is-active" : ""} />
+        </button>
+
+        <p className="likes">
+          <strong>{displayedLikes}</strong> likes
+        </p>
+
+        <p className="caption">
+          <strong>{post.username}</strong> {post.caption}
+        </p>
+      </div>
+    </div>
+  );
+}
+```
+
+</details>
+
+### 5.12 Add bookmark to `PostCard.jsx`
+
+In this step, keep everything from 5.11 and only add the bookmark feature.
+
+1. Open `src/components/PostCard.jsx`
+2. Update the import from `lucide-react` so it includes both `Bookmark` and `Heart`:
+
+```jsx
+import { Bookmark, Heart } from "lucide-react";
+```
+
+3. Add one more piece of state:
+
+```jsx
+const [bookmarked, setBookmarked] = useState(false);
+```
+
+4. Add a function for the bookmark button:
+
+```jsx
+function toggleBookmark() {
+  setBookmarked(!bookmarked);
+}
+```
+
+5. Inside `post-body`, add the bookmark button after the like button and before the likes text:
+
+```jsx
+<button className="action-button post-bookmark" type="button" onClick={toggleBookmark}>
+  <Bookmark className={bookmarked ? "is-active" : ""} />
+</button>
+```
+
+6. Save and test in the browser.
+
+Use these class names:
+
+- `action-button`
+- `post-bookmark`
+- `is-active`
+
+What should happen:
+
+- when you click the bookmark, the icon should change style
+- when you click it again, it should go back
 
 <details>
 <summary>Need help? Show completed <code>PostCard.jsx</code></summary>
@@ -1263,82 +1474,104 @@ You should now see several complete post cards under the header.
 
 ---
 
-## 6. Show Multiple Posts Without `.map()` (Required)
+## 6. Refactor the Feed with `.map()`
 
-In this part, do **not** use `.map()` yet.
+Right now, your app should already be showing several posts.
 
-Render multiple `PostCard` components manually in `App.jsx`.
+In section 5, you wrote each `PostCard` by hand.
+Now you will refactor that code and use `.map()` instead.
 
-1. Keep `Header`
-2. Keep the wrapper with class `feed`
-3. Render the first 3 posts one by one:
-   - `posts[0]`
-   - `posts[1]`
-   - `posts[2]`
+The goal in this section is not to change how the page looks.
+The goal is to make the code shorter and smarter.
 
-<details>
-<summary>Need help? Show required <code>App.jsx</code> solution without <code>.map()</code></summary>
+### About `.map()`
+
+- `.map()` goes through an array one item at a time
+- for each item, you return something new
+- in React, you often use `.map()` to turn data into components
+
+Example idea:
 
 ```jsx
-import { Header } from "./components/Header.jsx";
-import { PostCard } from "./components/PostCard.jsx";
-import { posts } from "./data/posts.js";
+items.map((item) => <Component />);
+```
 
-export default function App() {
-  return (
-    <div className="codeagram-app">
-      <Header />
-      <div className="feed">
-        <PostCard post={posts[0]} />
-        <PostCard post={posts[1]} />
-        <PostCard post={posts[2]} />
-      </div>
-    </div>
-  );
+In this exercise:
+
+- the array is `posts`
+- each item is one `post`
+- each `post` becomes one `PostCard`
+
+### 6.1 Update `App.jsx` to use `.map()`
+
+1. Open `src/App.jsx`
+2. Keep the same imports and the same `feed` wrapper
+3. Remove the manual `PostCard` lines:
+
+```jsx
+<PostCard post={posts[0]} />
+<PostCard post={posts[1]} />
+<PostCard post={posts[2]} />
+```
+
+4. Replace them with:
+
+```jsx
+{
+  posts.map((post) => <PostCard />);
 }
 ```
 
-</details>
+5. Inside the `.map()`, pass the `post` prop:
+
+```jsx
+{
+  posts.map((post) => <PostCard post={post} />);
+}
+```
+
+6. Add a `key` prop too:
+
+```jsx
+{
+  posts.map((post) => <PostCard key={post.id} post={post} />);
+}
+```
+
+7. `key` helps React keep track of each item in the list.
+8. Save and test in the browser
+9. The page should still look the same
+10. Open `src/data/posts.js`
+11. Add one more post object to the array
+12. Save and look at the browser again
+
+You can use this object:
+
+```js
+{
+  id: 6,
+  username: "new_react_dev",
+  avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&h=100&fit=crop",
+  timestamp: "12h ago",
+  image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=800&fit=crop",
+  caption: "Just added another post, and it showed up automatically with .map()!",
+  likes: 642
+}
+```
+
+What should happen:
+
+- the page should still show the same posts as before
+- the code in `App.jsx` should now be shorter
+- when you add one more post to `posts.js`, it should appear automatically
 
 ### Checkpoint
 
-You should now see a header and 3 post cards in the feed.
+You should now:
 
----
-
-## 7. Core Tasks (Required)
-
-Complete all of these before you move to the advanced section:
-
-```bash
-npm run lint
-npm run build
-```
-
-1. Project is created from scratch with Vite React
-2. `lucide-react` is installed
-3. `src/App.css` is removed
-4. `src/styles.css` is created and imported
-5. `HeaderBrand`, `HeaderActions`, `Header`, `UserInfo`, and `PostCard` are created in separate files
-6. `PostCard` uses props
-7. `PostCard` uses `useState` for like and bookmark
-8. `App.jsx` renders 3 posts without `.map()`
-9. `npm run lint` and `npm run build` both pass
-
----
-
-## 8. Advanced Tasks (For Skilled Students or Anyone Curious)
-
-Choose at least 1.
-
-### 8.1 Refactor the feed to use `.map()`
-
-Now you may use `.map()`.
-
-1. Keep the same `posts` array
-2. Replace the 3 manual `PostCard` lines with a `.map()`
-3. Use `post.id` as the `key`
-4. Try rendering all posts in the array
+1. render your posts with `.map()`
+2. see the same feed as before
+3. see the new extra post appear automatically after adding it to `posts.js`
 
 <details>
 <summary>Need help? Show <code>App.jsx</code> with <code>.map()</code></summary>
@@ -1364,12 +1597,78 @@ export default function App() {
 
 </details>
 
-### 8.2 Add accessibility improvements
+---
+
+## 7. Advanced Tasks (For Skilled Students or Anyone Curious)
+
+Choose 1 or more.
+You can start with a small UI task first, and then try a bigger feature.
+
+### 7.1 Add tags to the post data
+
+1. Add a `tags` property to each post in `posts.js`
+2. Let `tags` be an array
+3. Show the tags on each post
+
+Example idea:
+
+```js
+tags: ["react", "frontend", "javascript"]
+```
+
+### 7.2 Add comments to the post data
+
+1. Add a `comments` property to each post in `posts.js`
+2. Let `comments` be an array
+3. Add a button to show and hide comments
+4. Render the comments only when they are visible
+
+### 7.3 Implement search
+
+1. Add a search input
+2. Let the user search:
+   - by username
+   - by caption
+   - by tag
+3. Only show posts that match the search
+
+### 7.4 Add React Router
+
+1. Install React Router
+2. Create routes for:
+   - a home page with the feed
+   - a profile page
+   - a notifications page
+3. Update the header buttons or links so the user can navigate
+
+### 7.5 Show bookmarked posts in their own view
+
+1. Create a new page or view
+2. Show only posts the user has bookmarked
+3. Add a way to open that page or view
+
+### 7.6 Make it possible to create new posts
+
+1. Add a form
+2. Let the user enter:
+   - username
+   - image URL
+   - caption
+3. Add the new post to the feed
+
+### 7.7 Connect the app to Supabase or Firebase
+
+1. Save posts in a database
+2. Load posts from the database
+3. If you want, also save likes or bookmarks
+
+### 7.8 Add accessibility improvements
 
 1. Make sure all images have `alt` text
 2. Add `aria-label` to icon-only buttons
+3. Check keyboard navigation
 
-### 8.3 Add one more action button
+### 7.9 Add one more action button
 
 Examples:
 
@@ -1377,18 +1676,28 @@ Examples:
 - comment
 - send
 
-### 8.4 Pass brand text as props
+### 7.10 Pass brand text as props
 
-Try making `HeaderBrand` more reusable by passing in:
+Make `HeaderBrand` more reusable by passing in:
 
 - title
 - subtitle
 
+### 7.11 Come up with your own improvement
+
+Examples:
+
+- dark/light theme toggle
+- sort posts by likes
+- filter posts by tag
+- show like count with better formatting
+- add a modal for comments or post details
+
 ---
 
-## 9. Reference
+## 8. Reference
 
-- Main concepts in this exercise: components, props, state, imports, JSX, and optional `.map()`
+- Main concepts in this exercise: components, props, state, events, imports, JSX, and `.map()`
 
 ---
 
