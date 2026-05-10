@@ -458,22 +458,100 @@ The project still runs after saving the CSS file.
 
 ## 3. Create and Test the Header
 
-In this step, build and test one component at a time.
+![Header step preview](images/header.png)
 
-Try this approach for each component:
-
-1. Create the file
-2. Write the `import` lines first
-3. Write the component function
-4. Add the JSX inside `return (...)`
-5. Export the component
-6. Test it before moving on
+In this step, you will start with `Header.jsx` so you can see something on the page right away.
+Then you will replace placeholders one piece at a time until the full header is finished.
 
 ### 3.1 Create the folder
 
 1. In `src`, create a folder named `components`
 
-### 3.2 Create `HeaderBrand.jsx`
+### 3.2 Create `Header.jsx` first
+
+1. Inside `src/components`, create `Header.jsx`
+2. Start with a simple wrapper with the class `app-header`
+3. Add temporary placeholder content inside it so you can test the layout early
+4. Example placeholder text:
+   - `Brand goes here`
+   - `Actions go here`
+5. Export the component
+
+### Hint
+
+- This is just a test version so you can see the header area early
+- You do not need `HeaderBrand` or `HeaderActions` yet
+- Search for `.app-header` in `src/styles.css` to see what styling this wrapper gets
+- It is okay if the placeholder text looks simple right now
+
+### Mini-checkpoint
+
+Before opening the solution, ask yourself:
+
+1. Did I create `Header.jsx` in the `components` folder?
+2. Did I use `className="app-header"`?
+3. Did I add some temporary text so I can test the header area?
+4. Did I export the component?
+
+<details>
+<summary>Need help? Show starter <code>Header.jsx</code></summary>
+
+```jsx
+export function Header() {
+  return (
+    <div className="app-header">
+      <div>Brand goes here</div>
+      <div>Actions go here</div>
+    </div>
+  );
+}
+```
+
+</details>
+
+### 3.3 Test `Header.jsx` in `App.jsx`
+
+Update `src/App.jsx` so it renders only the header for now.
+
+### Hint
+
+- Import `Header` at the top of `App.jsx`
+- Keep the wrapper class `codeagram-app`
+- Render only one component inside it for now: `<Header />`
+
+### What you should see
+
+- A dark top bar
+- The text `Brand goes here`
+- The text `Actions go here`
+
+### Placeholder test
+
+Before moving on to `HeaderBrand.jsx`, make sure:
+
+1. The dark header bar is visible
+2. Both placeholder texts are visible inside the bar
+3. There are no red errors in the editor
+4. Saving the file updates the browser
+
+<details>
+<summary>Need help? Show temporary <code>App.jsx</code></summary>
+
+```jsx
+import { Header } from "./components/Header.jsx";
+
+export default function App() {
+  return (
+    <div className="codeagram-app">
+      <Header />
+    </div>
+  );
+}
+```
+
+</details>
+
+### 3.4 Create `HeaderBrand.jsx`
 
 1. Inside `src/components`, create `HeaderBrand.jsx`
 2. Build a component that shows:
@@ -524,7 +602,52 @@ export function HeaderBrand() {
 
 </details>
 
-### 3.3 Create `HeaderActions.jsx`
+### 3.5 Update `Header.jsx` to use `HeaderBrand`
+
+1. Open `src/components/Header.jsx`
+2. Import `HeaderBrand`
+3. Replace only the `Brand goes here` placeholder
+4. Keep `Actions go here` for now
+5. Save and test in the browser
+
+### Hint
+
+- You are only replacing one placeholder in this step
+- This helps you test one part at a time
+- Your header should still have the `app-header` wrapper
+
+### What you should see
+
+- The Codeagram brand on the left
+- The placeholder text `Actions go here` still on the right
+
+### Mini-checkpoint
+
+Before opening the solution, ask yourself:
+
+1. Did I import `HeaderBrand` from the correct file?
+2. Did I keep the `app-header` wrapper?
+3. Did I replace only the brand placeholder in this step?
+
+<details>
+<summary>Need help? Show updated <code>Header.jsx</code> with <code>HeaderBrand</code></summary>
+
+```jsx
+import { HeaderBrand } from "./HeaderBrand.jsx";
+
+export function Header() {
+  return (
+    <div className="app-header">
+      <HeaderBrand />
+      <div>Actions go here</div>
+    </div>
+  );
+}
+```
+
+</details>
+
+### 3.6 Create `HeaderActions.jsx`
 
 1. Inside `src/components`, create `HeaderActions.jsx`
 2. Build a component with 3 buttons
@@ -573,19 +696,19 @@ export function HeaderActions() {
 
 </details>
 
-### 3.4 Create `Header.jsx`
+### 3.7 Update `Header.jsx` to use `HeaderActions`
 
-1. Inside `src/components`, create `Header.jsx`
-2. Import `HeaderBrand`
-3. Import `HeaderActions`
-4. Render both inside one wrapper with class `app-header`
+1. Open `src/components/Header.jsx`
+2. Import `HeaderActions`
+3. Replace `Actions go here` with `<HeaderActions />`
+4. Keep `HeaderBrand` in place
+5. Save and test in the browser
 
 ### Hint
 
-- This component does not need much HTML
-- It is mainly used to combine smaller components
-- Start by writing the imports
-- Then return one wrapper element with two child components inside it
+- `Header.jsx` is the component that combines the smaller header parts
+- When you finish this step, both placeholders should be gone
+- You should now have one wrapper with two child components inside it
 
 ### Mini-checkpoint
 
@@ -593,7 +716,8 @@ Before opening the solution, ask yourself:
 
 1. Did I import both components from the correct files?
 2. Did I render `<HeaderBrand />` and `<HeaderActions />`?
-3. Did I give the wrapper the class `app-header`?
+3. Did I remove the placeholder text?
+4. Did I keep the wrapper class `app-header`?
 
 <details>
 <summary>Need help? Show starter <code>Header.jsx</code></summary>
@@ -614,43 +738,14 @@ export function Header() {
 
 </details>
 
-### 3.5 Test the header in `App.jsx`
-
-Update `src/App.jsx` so it renders only the header for now.
-
-### Hint
-
-- Import `Header` at the top of `App.jsx`
-- Keep the wrapper class `codeagram-app`
-- Render only one component inside it for now: `<Header />`
-
-### What you should see
-
-- A dark top bar
-- A blue square icon on the left
-- The word `Codeagram`
-- Three icon buttons on the right
-
-<details>
-<summary>Need help? Show temporary <code>App.jsx</code></summary>
-
-```jsx
-import { Header } from "./components/Header.jsx";
-
-export default function App() {
-  return (
-    <div className="codeagram-app">
-      <Header />
-    </div>
-  );
-}
-```
-
-</details>
-
 ### Checkpoint
 
-You should see a top header with a logo area, text, and 3 icon buttons.
+You should now see:
+
+1. A dark top header
+2. The Codeagram brand on the left
+3. Three icon buttons on the right
+4. No placeholder text
 
 ---
 
@@ -659,6 +754,37 @@ You should see a top header with a logo area, text, and 3 icon buttons.
 Create a new folder in `src` named `data`.
 
 Inside `src/data`, create a file named `posts.js`.
+
+### About the data
+
+This file stores the data for the posts in the app.
+
+- `posts` is an array
+- An array is a list of values
+- Each item in the `posts` array is an object
+- An object stores data in `key: value` pairs
+- The key is the name of the data
+- The value is the actual data
+
+Example:
+
+```js
+{
+  username: "sarah_codes",
+  likes: 1243
+}
+```
+
+In this object:
+
+- `username` and `likes` are keys
+- `"sarah_codes"` and `1243` are values
+
+In this exercise:
+
+- the array is `posts`
+- each object is one post
+- each post has data like `username`, `image`, `caption`, and `likes`
 
 Add this data:
 
@@ -721,13 +847,229 @@ You now have a `posts` array that can be used later in the app.
 
 ## 5. Build One Reusable Post Card
 
-In this step, build the card from smaller parts.
+Start with a simple `PostCard`, test it, and then improve it step by step.
 
-### 5.1 Create `UserInfo.jsx`
+### 5.1 Create a simple `PostCard.jsx`
+
+1. Inside `src/components`, create `PostCard.jsx`
+2. Start with a wrapper that uses the class `post-card`
+3. Add:
+   - one image
+   - one caption
+4. Use hardcoded content first
+5. You can copy one image URL and one caption from `posts.js`, but write them directly inside the component for now
+
+<details>
+<summary>Need help? Show simple <code>PostCard.jsx</code></summary>
+
+```jsx
+export function PostCard() {
+  return (
+    <div className="post-card">
+      <img
+        className="post-image"
+        src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=800&fit=crop"
+        alt="Coding setup"
+      />
+      <p className="caption">Finally got my new dev setup complete! Loving the dual monitor workflow.</p>
+    </div>
+  );
+}
+```
+
+</details>
+
+### 5.2 Test the simple card in `App.jsx`
+
+1. Open `src/App.jsx`
+2. Keep the `Header` that you already built and tested in section 3
+3. Import `PostCard`
+4. Add a wrapper with the class `feed` under the header
+5. Render one `PostCard` inside that wrapper
+6. Save and test in the browser
+
+<details>
+<summary>Need help? Show temporary <code>App.jsx</code> with one simple card</summary>
+
+```jsx
+import { Header } from "./components/Header.jsx";
+import { PostCard } from "./components/PostCard.jsx";
+
+export default function App() {
+  return (
+    <div className="codeagram-app">
+      <Header />
+      <div className="feed">
+        <PostCard />
+      </div>
+    </div>
+  );
+}
+```
+
+</details>
+
+---
+
+### Props
+
+Props are values you send into a component.
+
+- What: props are inputs to a component
+- Why: they make a component reusable
+- How: you pass props where you use the component, and receive them in the component function
+
+Example:
+
+```jsx
+<PostCard image="..." caption="Hello" />
+```
+
+```jsx
+export function PostCard({ image, caption }) {
+  // use image and caption here
+}
+```
+
+---
+
+### 5.3 Update `PostCard.jsx` to use props
+
+1. Open `src/components/PostCard.jsx`
+2. Make the component receive:
+   - `image`
+   - `caption`
+3. Replace the hardcoded image URL with the `image` prop
+4. Replace the hardcoded caption text with the `caption` prop
+
+<details>
+<summary>Need help? Show <code>PostCard.jsx</code> with props</summary>
+
+```jsx
+export function PostCard({ image, caption }) {
+  return (
+    <div className="post-card">
+      <img className="post-image" src={image} alt={caption} />
+      <p className="caption">{caption}</p>
+    </div>
+  );
+}
+```
+
+</details>
+
+### 5.4 Pass props from `App.jsx`
+
+1. Open `src/App.jsx`
+2. Pass an image and a caption into `PostCard`
+3. Save and test in the browser
+
+<details>
+<summary>Need help? Show <code>App.jsx</code> with props</summary>
+
+```jsx
+import { Header } from "./components/Header.jsx";
+import { PostCard } from "./components/PostCard.jsx";
+
+export default function App() {
+  return (
+    <div className="codeagram-app">
+      <Header />
+      <div className="feed">
+        <PostCard
+          image="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=800&fit=crop"
+          caption="Learning React step by step"
+        />
+      </div>
+    </div>
+  );
+}
+```
+
+</details>
+
+### 5.5 Render a few more cards with hardcoded props
+
+1. Open `src/App.jsx`
+2. Add 2 or 3 more `PostCard` components
+3. Give each card its own hardcoded `image` and `caption`
+4. Save and test in the browser
+
+<details>
+<summary>Need help? Show <code>App.jsx</code> with a few hardcoded cards</summary>
+
+```jsx
+import { Header } from "./components/Header.jsx";
+import { PostCard } from "./components/PostCard.jsx";
+
+export default function App() {
+  return (
+    <div className="codeagram-app">
+      <Header />
+      <div className="feed">
+        <PostCard
+          image="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=800&fit=crop"
+          caption="Learning React step by step"
+        />
+        <PostCard
+          image="https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=800&h=800&fit=crop"
+          caption="Working on another post card"
+        />
+        <PostCard
+          image="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=800&fit=crop"
+          caption="Components are getting easier now"
+        />
+      </div>
+    </div>
+  );
+}
+```
+
+</details>
+
+### 5.6 Use the `posts` data
+
+1. Open `src/App.jsx`
+2. Import `posts` from `src/data/posts.js`
+3. Replace your hardcoded prop values with values from `posts`
+4. Use at least 3 posts:
+   - `posts[0]`
+   - `posts[1]`
+   - `posts[2]`
+5. Save and test in the browser
+
+<details>
+<summary>Need help? Show <code>App.jsx</code> using <code>posts</code> data</summary>
+
+```jsx
+import { Header } from "./components/Header.jsx";
+import { PostCard } from "./components/PostCard.jsx";
+import { posts } from "./data/posts.js";
+
+export default function App() {
+  return (
+    <div className="codeagram-app">
+      <Header />
+      <div className="feed">
+        <PostCard image={posts[0].image} caption={posts[0].caption} />
+        <PostCard image={posts[1].image} caption={posts[1].caption} />
+        <PostCard image={posts[2].image} caption={posts[2].caption} />
+      </div>
+    </div>
+  );
+}
+```
+
+</details>
+
+### 5.7 Create `UserInfo.jsx`
 
 1. Inside `src/components`, create `UserInfo.jsx`
 2. Make it receive `avatar`, `timestamp`, and `username` as props
-3. Render those values inside a wrapper with class `user-info`
+3. Use a `<div>` as the outer wrapper with the class `user-info`
+4. Use an `<img>` for the avatar and give it the class `avatar`
+5. Use an `<h2>` for the username
+6. Use a `<p>` for the timestamp
 
 <details>
 <summary>Need help? Show starter <code>UserInfo.jsx</code></summary>
@@ -746,26 +1088,127 @@ export function UserInfo({ avatar, timestamp, username }) {
 
 </details>
 
-### 5.2 Create `PostCard.jsx`
+### 5.8 Test `UserInfo.jsx` inside `PostCard.jsx`
 
-1. Inside `src/components`, create `PostCard.jsx`
-2. Import `useState` from React
-3. Import `Heart` and `Bookmark` from `lucide-react`
-4. Import `UserInfo`
-5. Make the component receive one prop named `post`
-6. Add two pieces of state:
-   - `liked`
-   - `bookmarked`
-7. Show:
-   - user info
-   - post image
-   - like button
-   - bookmark button
-   - like count
-   - caption
+1. Open `src/components/PostCard.jsx`
+2. Import `UserInfo`
+3. Render `UserInfo` above the image
+4. Pass hardcoded props into `UserInfo` for now:
+   - `avatar="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop"`
+   - `username="sarah_codes"`
+   - `timestamp="2h ago"`
+5. Keep using the `image` and `caption` props in `PostCard`
+6. Save and test in the browser
 
 <details>
-<summary>Need help? Show starter <code>PostCard.jsx</code></summary>
+<summary>Need help? Show <code>PostCard.jsx</code> with hardcoded <code>UserInfo</code></summary>
+
+```jsx
+import { UserInfo } from "./UserInfo.jsx";
+
+export function PostCard({ image, caption }) {
+  return (
+    <div className="post-card">
+      <UserInfo
+        avatar="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop"
+        username="sarah_codes"
+        timestamp="2h ago"
+      />
+      <img className="post-image" src={image} alt={caption} />
+      <p className="caption">{caption}</p>
+    </div>
+  );
+}
+```
+
+</details>
+
+### 5.9 Upgrade `PostCard.jsx` to receive one `post` prop
+
+1. Open `src/components/PostCard.jsx`
+2. Change the props from `image` and `caption` to one prop named `post`
+3. `post` is an object prop
+4. This means you are now passing one object into the component instead of passing separate values one by one
+5. Import `UserInfo`
+6. Add `UserInfo` above the image
+7. Use:
+   - `post.avatar`
+   - `post.username`
+   - `post.timestamp`
+   - `post.image`
+   - `post.caption`
+8. Do not test yet
+9. In the next step, update `App.jsx` to match this change
+
+<details>
+<summary>Need help? Show upgraded <code>PostCard.jsx</code></summary>
+
+```jsx
+import { UserInfo } from "./UserInfo.jsx";
+
+export function PostCard({ post }) {
+  return (
+    <div className="post-card">
+      <UserInfo avatar={post.avatar} timestamp={post.timestamp} username={post.username} />
+      <img className="post-image" src={post.image} alt={post.caption} />
+      <p className="caption">{post.caption}</p>
+    </div>
+  );
+}
+```
+
+</details>
+
+### 5.10 Update `App.jsx` to pass `post` props
+
+1. Open `src/App.jsx`
+2. Replace the `image` and `caption` props with one `post` prop
+3. Do this for the same 3 cards
+4. Save and test in the browser
+
+<details>
+<summary>Need help? Show <code>App.jsx</code> with <code>post</code> props</summary>
+
+```jsx
+import { Header } from "./components/Header.jsx";
+import { PostCard } from "./components/PostCard.jsx";
+import { posts } from "./data/posts.js";
+
+export default function App() {
+  return (
+    <div className="codeagram-app">
+      <Header />
+      <div className="feed">
+        <PostCard post={posts[0]} />
+        <PostCard post={posts[1]} />
+        <PostCard post={posts[2]} />
+      </div>
+    </div>
+  );
+}
+```
+
+</details>
+
+### 5.11 Finish the post card with buttons and likes
+
+1. Open `src/components/PostCard.jsx`
+2. Import `useState` from React
+3. Import `Heart` and `Bookmark` from `lucide-react`
+4. Add two pieces of state:
+   - `liked`
+   - `bookmarked`
+5. Create functions to toggle each state
+6. Replace the simple caption area with a wrapper with class `post-body`
+7. Add:
+   - a like button
+   - a bookmark button
+   - the likes text
+   - the caption text
+8. Save and test in the browser
+
+<details>
+<summary>Need help? Show completed <code>PostCard.jsx</code></summary>
 
 ```jsx
 import { useState } from "react";
@@ -788,7 +1231,6 @@ export function PostCard({ post }) {
   return (
     <div className="post-card">
       <UserInfo avatar={post.avatar} timestamp={post.timestamp} username={post.username} />
-
       <img className="post-image" src={post.image} alt={post.caption} />
 
       <div className="post-body">
@@ -815,38 +1257,9 @@ export function PostCard({ post }) {
 
 </details>
 
-### 5.3 Test one card in `App.jsx`
-
-1. Import `Header`
-2. Import `PostCard`
-3. Import `posts`
-4. Render only the first post: `posts[0]`
-
-<details>
-<summary>Need help? Show temporary <code>App.jsx</code> with one card</summary>
-
-```jsx
-import { Header } from "./components/Header.jsx";
-import { PostCard } from "./components/PostCard.jsx";
-import { posts } from "./data/posts.js";
-
-export default function App() {
-  return (
-    <div className="codeagram-app">
-      <Header />
-      <div className="feed">
-        <PostCard post={posts[0]} />
-      </div>
-    </div>
-  );
-}
-```
-
-</details>
-
 ### Checkpoint
 
-You should now see one complete post card under the header.
+You should now see several complete post cards under the header.
 
 ---
 
