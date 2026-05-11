@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Bookmark, Heart } from "lucide-react";
 import { UserInfo } from "./UserInfo.jsx";
 
-export function PostCard({ post }) {
+export default function PostCard({ post }) {
   const [liked, setLiked] = useState(false);
   const [bookmarked, setBookmarked] = useState(false);
   const displayedLikes = liked ? post.likes + 1 : post.likes;

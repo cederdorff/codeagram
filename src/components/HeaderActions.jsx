@@ -1,6 +1,6 @@
 import { Bell, Search, User } from "lucide-react";
 
-export function HeaderActions() {
+export default function HeaderActions() {
   return (
     <div className="header-actions">
       <button className="icon-button" type="button">

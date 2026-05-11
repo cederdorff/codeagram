@@ -1,7 +1,7 @@
-import { HeaderActions } from "./HeaderActions.jsx";
-import { HeaderBrand } from "./HeaderBrand.jsx";
+import HeaderBrand from "./HeaderBrand";
+import HeaderActions from "./HeaderActions";
 
-export function Header() {
+export default function Header() {
   return (
     <div className="app-header">
       <HeaderBrand />

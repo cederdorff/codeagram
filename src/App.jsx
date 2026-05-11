@@ -1,5 +1,5 @@
-import { Header } from "./components/Header.jsx";
-import { PostCard } from "./components/PostCard.jsx";
+import Header from "./components/Header.jsx";
+import PostCard from "./components/PostCard.jsx";
 import { posts } from "./data/posts.js";
 
 function App() {

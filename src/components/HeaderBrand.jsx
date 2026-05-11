@@ -1,6 +1,6 @@
 import { CodeXml } from "lucide-react";
 
-export function HeaderBrand() {
+export default function HeaderBrand() {
   return (
     <a className="brand" href="/">
       <span className="brand-mark">
