@@ -1,5 +1,5 @@
-import HeaderBrand from "./HeaderBrand";
-import HeaderActions from "./HeaderActions";
+import HeaderBrand from "./HeaderBrand.jsx";
+import HeaderActions from "./HeaderActions.jsx";
 
 export default function Header() {
   return (

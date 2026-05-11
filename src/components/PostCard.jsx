@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Bookmark, Heart } from "lucide-react";
-import { UserInfo } from "./UserInfo.jsx";
+import UserInfo from "./UserInfo.jsx";
 
 export default function PostCard({ post }) {
   const [liked, setLiked] = useState(false);

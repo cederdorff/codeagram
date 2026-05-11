@@ -2,7 +2,7 @@ import Header from "./components/Header.jsx";
 import PostCard from "./components/PostCard.jsx";
 import { posts } from "./data/posts.js";
 
-function App() {
+export default function App() {
   return (
     <div className="codeagram-app">
       <Header />
@@ -14,5 +14,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

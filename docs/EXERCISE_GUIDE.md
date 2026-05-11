@@ -518,8 +518,10 @@ export default function Header() {
 ```
 
 ```jsx
-import { Header } from "./components/Header.jsx";
+import Header from "./components/Header.jsx";
 ```
+
+In this exercise, all React components use `export default`, so you import them without curly braces.
 
 ---
 
@@ -605,7 +607,7 @@ Before moving on to `HeaderBrand.jsx`, make sure:
 <summary>Need help? Show temporary <code>App.jsx</code></summary>
 
 ```jsx
-import { Header } from "./components/Header.jsx";
+import Header from "./components/Header.jsx";
 
 export default function App() {
   return (
@@ -700,7 +702,7 @@ Before opening the solution, ask yourself:
 <summary>Need help? Show updated <code>Header.jsx</code> with <code>HeaderBrand</code></summary>
 
 ```jsx
-import { HeaderBrand } from "./HeaderBrand.jsx";
+import HeaderBrand from "./HeaderBrand.jsx";
 
 export default function Header() {
   return (
@@ -790,8 +792,8 @@ Before opening the solution, ask yourself:
 <summary>Need help? Show starter <code>Header.jsx</code></summary>
 
 ```jsx
-import { HeaderActions } from "./HeaderActions.jsx";
-import { HeaderBrand } from "./HeaderBrand.jsx";
+import HeaderActions from "./HeaderActions.jsx";
+import HeaderBrand from "./HeaderBrand.jsx";
 
 export default function Header() {
   return (
@@ -970,8 +972,8 @@ export default function PostCard() {
 <summary>Need help? Show temporary <code>App.jsx</code> with one simple card</summary>
 
 ```jsx
-import { Header } from "./components/Header.jsx";
-import { PostCard } from "./components/PostCard.jsx";
+import Header from "./components/Header.jsx";
+import PostCard from "./components/PostCard.jsx";
 
 export default function App() {
   return (
@@ -1046,8 +1048,8 @@ export default function PostCard({ image, caption }) {
 <summary>Need help? Show <code>App.jsx</code> with props</summary>
 
 ```jsx
-import { Header } from "./components/Header.jsx";
-import { PostCard } from "./components/PostCard.jsx";
+import Header from "./components/Header.jsx";
+import PostCard from "./components/PostCard.jsx";
 
 export default function App() {
   return (
@@ -1077,8 +1079,8 @@ export default function App() {
 <summary>Need help? Show <code>App.jsx</code> with a few hardcoded cards</summary>
 
 ```jsx
-import { Header } from "./components/Header.jsx";
-import { PostCard } from "./components/PostCard.jsx";
+import Header from "./components/Header.jsx";
+import PostCard from "./components/PostCard.jsx";
 
 export default function App() {
   return (
@@ -1121,8 +1123,8 @@ export default function App() {
 <summary>Need help? Show <code>App.jsx</code> using <code>posts</code> data</summary>
 
 ```jsx
-import { Header } from "./components/Header.jsx";
-import { PostCard } from "./components/PostCard.jsx";
+import Header from "./components/Header.jsx";
+import PostCard from "./components/PostCard.jsx";
 import { posts } from "./data/posts.js";
 
 export default function App() {
@@ -1189,7 +1191,7 @@ Next, you will try it inside `PostCard`.
 <summary>Need help? Show <code>PostCard.jsx</code> with hardcoded <code>UserInfo</code></summary>
 
 ```jsx
-import { UserInfo } from "./UserInfo.jsx";
+import UserInfo from "./UserInfo.jsx";
 
 export default function PostCard({ image, caption }) {
   return (
@@ -1232,7 +1234,7 @@ Next, you will replace the separate `image` and `caption` props with one `post` 
 <summary>Need help? Show upgraded <code>PostCard.jsx</code></summary>
 
 ```jsx
-import { UserInfo } from "./UserInfo.jsx";
+import UserInfo from "./UserInfo.jsx";
 
 export default function PostCard({ post }) {
   return (
@@ -1267,8 +1269,8 @@ export default function PostCard({ post }) {
 <summary>Need help? Show <code>App.jsx</code> with <code>post</code> props</summary>
 
 ```jsx
-import { Header } from "./components/Header.jsx";
-import { PostCard } from "./components/PostCard.jsx";
+import Header from "./components/Header.jsx";
+import PostCard from "./components/PostCard.jsx";
 import { posts } from "./data/posts.js";
 
 export default function App() {
