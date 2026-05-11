@@ -470,7 +470,7 @@ JSX is the syntax you use in React components to describe what should be shown o
 Example:
 
 ```jsx
-export function Header() {
+export default function Header() {
   return <div>Hello</div>;
 }
 ```
@@ -512,7 +512,7 @@ Examples in this exercise:
 Example:
 
 ```jsx
-export function Header() {
+export default function Header() {
   return <div>Hello</div>;
 }
 ```
@@ -564,7 +564,7 @@ Before opening the solution, ask yourself:
 <summary>Need help? Show starter <code>Header.jsx</code></summary>
 
 ```jsx
-export function Header() {
+export default function Header() {
   return (
     <div className="app-header">
       <div>Brand goes here</div>
@@ -654,7 +654,7 @@ Before opening the solution, ask yourself:
 ```jsx
 import { CodeXml } from "lucide-react";
 
-export function HeaderBrand() {
+export default function HeaderBrand() {
   return (
     <a className="brand" href="/">
       <span className="brand-mark">
@@ -702,7 +702,7 @@ Before opening the solution, ask yourself:
 ```jsx
 import { HeaderBrand } from "./HeaderBrand.jsx";
 
-export function Header() {
+export default function Header() {
   return (
     <div className="app-header">
       <HeaderBrand />
@@ -744,7 +744,7 @@ Before opening the solution, ask yourself:
 ```jsx
 import { Bell, Search, User } from "lucide-react";
 
-export function HeaderActions() {
+export default function HeaderActions() {
   return (
     <div className="header-actions">
       <button className="icon-button" type="button">
@@ -793,7 +793,7 @@ Before opening the solution, ask yourself:
 import { HeaderActions } from "./HeaderActions.jsx";
 import { HeaderBrand } from "./HeaderBrand.jsx";
 
-export function Header() {
+export default function Header() {
   return (
     <div className="app-header">
       <HeaderBrand />
@@ -941,7 +941,7 @@ The flow in this section is:
 <summary>Need help? Show simple <code>PostCard.jsx</code></summary>
 
 ```jsx
-export function PostCard() {
+export default function PostCard() {
   return (
     <div className="post-card">
       <img
@@ -1004,7 +1004,7 @@ Example:
 ```
 
 ```jsx
-export function PostCard({ image, caption }) {
+export default function PostCard({ image, caption }) {
   // use image and caption here
 }
 ```
@@ -1024,7 +1024,7 @@ export function PostCard({ image, caption }) {
 <summary>Need help? Show <code>PostCard.jsx</code> with props</summary>
 
 ```jsx
-export function PostCard({ image, caption }) {
+export default function PostCard({ image, caption }) {
   return (
     <div className="post-card">
       <img className="post-image" src={image} alt={caption} />
@@ -1157,7 +1157,7 @@ Next, you will improve each card by adding user information at the top.
 <summary>Need help? Show starter <code>UserInfo.jsx</code></summary>
 
 ```jsx
-export function UserInfo({ avatar, timestamp, username }) {
+export default function UserInfo({ avatar, timestamp, username }) {
   return (
     <div className="user-info">
       <img className="avatar" src={avatar} alt={username} />
@@ -1191,7 +1191,7 @@ Next, you will try it inside `PostCard`.
 ```jsx
 import { UserInfo } from "./UserInfo.jsx";
 
-export function PostCard({ image, caption }) {
+export default function PostCard({ image, caption }) {
   return (
     <div className="post-card">
       <UserInfo
@@ -1234,7 +1234,7 @@ Next, you will replace the separate `image` and `caption` props with one `post` 
 ```jsx
 import { UserInfo } from "./UserInfo.jsx";
 
-export function PostCard({ post }) {
+export default function PostCard({ post }) {
   return (
     <div className="post-card">
       <UserInfo avatar={post.avatar} timestamp={post.timestamp} username={post.username} />
@@ -1423,7 +1423,7 @@ import { useState } from "react";
 import { Heart } from "lucide-react";
 import { UserInfo } from "./UserInfo.jsx";
 
-export function PostCard({ post }) {
+export default function PostCard({ post }) {
   const [liked, setLiked] = useState(false);
   const displayedLikes = liked ? post.likes + 1 : post.likes;
 
@@ -1510,7 +1510,7 @@ import { useState } from "react";
 import { Bookmark, Heart } from "lucide-react";
 import { UserInfo } from "./UserInfo.jsx";
 
-export function PostCard({ post }) {
+export default function PostCard({ post }) {
   const [liked, setLiked] = useState(false);
   const [bookmarked, setBookmarked] = useState(false);
   const displayedLikes = liked ? post.likes + 1 : post.likes;
@@ -1579,7 +1579,7 @@ When you have many similar pieces of UI, you often want to render a list.
 Example:
 
 ```jsx
-items.map((item) => <Card />)
+items.map((item) => <Card />);
 ```
 
 ### About `.map()`
@@ -1615,25 +1615,25 @@ In this exercise:
 4. Replace them with:
 
 ```jsx
-{posts.map((post) => (
-  <PostCard />
-))}
+{
+  posts.map((post) => <PostCard />);
+}
 ```
 
 5. Inside the `.map()`, pass the `post` prop:
 
 ```jsx
-{posts.map((post) => (
-  <PostCard post={post} />
-))}
+{
+  posts.map((post) => <PostCard post={post} />);
+}
 ```
 
 6. Add a `key` prop too:
 
 ```jsx
-{posts.map((post) => (
-  <PostCard key={post.id} post={post} />
-))}
+{
+  posts.map((post) => <PostCard key={post.id} post={post} />);
+}
 ```
 
 7. `key` helps React keep track of each item in the list.
@@ -1711,7 +1711,7 @@ You can start with a small UI task first, and then try a bigger feature.
 Example idea:
 
 ```js
-tags: ["react", "frontend", "javascript"]
+tags: ["react", "frontend", "javascript"];
 ```
 
 ### 7.2 Add comments to the post data
